@@ -21,7 +21,7 @@ public class Priority {
         return conn;
     }
 
-    private static AbstractDatabase conn;
+    private static AbstractDatabase conn = null;
 
     public Priority(int id, String name) {
         this.id = id;
