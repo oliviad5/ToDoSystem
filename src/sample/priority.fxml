@@ -3,12 +3,14 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="236.0" prefWidth="487.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.PriorityController">
+<AnchorPane prefHeight="236.0" prefWidth="572.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.PriorityController">
    <children>
       <Label layoutX="211.0" layoutY="14.0" text="Priorität:" />
-      <Button layoutX="387.0" layoutY="190.0" mnemonicParsing="false" text="Speichern" />
-      <ListView fx:id="priorityListView" onMouseClicked="#itemSelected" prefHeight="236.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Button layoutX="472.0" layoutY="203.0" mnemonicParsing="false" onAction="#saveClicked" text="Speichern" />
+      <ListView fx:id="priorityListView" onMouseClicked="#itemSelected" prefHeight="197.0" prefWidth="200.0" AnchorPane.bottomAnchor="39.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <TextField fx:id="nameTextField" layoutX="269.0" layoutY="10.0" prefHeight="25.0" prefWidth="187.0" AnchorPane.leftAnchor="269.0" AnchorPane.rightAnchor="31.0" AnchorPane.topAnchor="10.0" />
-      <Button layoutX="295.0" layoutY="190.0" mnemonicParsing="false" text="Abbrechen" />
+      <Button layoutX="389.0" layoutY="203.0" mnemonicParsing="false" onAction="#cancelClicked" text="Abbrechen" />
+      <Button layoutX="70.0" layoutY="203.0" mnemonicParsing="false" onAction="#deleteClicked" text="Löschen" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="70.0" />
+      <Button layoutX="14.0" layoutY="203.0" mnemonicParsing="false" onAction="#newClicked" text="Neu" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="14.0" />
    </children>
 </AnchorPane>

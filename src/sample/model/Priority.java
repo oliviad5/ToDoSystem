@@ -14,6 +14,15 @@ public class Priority {
     private int id;
     private String name;
 
+    public static AbstractDatabase getConn() {
+        if (conn == null){
+            conn = new MySQLConnector("d0345762", "5AHEL2021","rathgeb.at",3306,"d0345762");
+        }
+        return conn;
+    }
+
+    private static AbstractDatabase conn;
+
     public Priority(int id, String name) {
         this.id = id;
         this.name = name;
@@ -43,11 +52,11 @@ public class Priority {
     public static ObservableList<Priority> getList(){
         ObservableList<Priority> list = FXCollections.observableArrayList();
 
-        AbstractDatabase conn = new MySQLConnector("d0345762", "5AHEL2021","rathgeb.at",3306,"d0345762");
+       // conn = new MySQLConnector("d0345762", "5AHEL2021","rathgeb.at",3306,"d0345762");
 
         PreparedStatement statement = null;
         try {
-            statement = conn.getConnection().prepareStatement("SELECT * FROM gr4_priority");
+            statement = getConn().getConnection().prepareStatement("SELECT * FROM gr4_priority");
 
             ResultSet results = statement.executeQuery();
 
