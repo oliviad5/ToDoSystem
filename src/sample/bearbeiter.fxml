@@ -5,20 +5,17 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="187.0" prefWidth="594.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Bearbeiter">
+<AnchorPane prefHeight="217.0" prefWidth="612.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Bearbeiter">
    <children>
-      <Button layoutX="449.0" layoutY="142.0" mnemonicParsing="false" text="Bestätigen" />
-      <Label layoutX="52.0" layoutY="106.0" text="Ort:" />
-      <Label layoutX="290.0" layoutY="65.0" text="Hausnummer:" />
-      <Label layoutX="52.0" layoutY="65.0" text="Straße:" />
-      <Label layoutX="290.0" layoutY="25.0" text="Nachname:" />
-      <Label layoutX="52.0" layoutY="25.0" text="Vorname:" />
-      <TextField layoutX="113.0" layoutY="21.0" prefHeight="31.0" prefWidth="165.0" />
-      <TextField layoutX="383.0" layoutY="21.0" />
-      <TextField layoutX="113.0" layoutY="61.0" prefHeight="31.0" prefWidth="165.0" />
-      <TextField layoutX="383.0" layoutY="60.0" prefHeight="25.0" prefWidth="60.0" />
-      <TextField layoutX="113.0" layoutY="102.0" prefHeight="31.0" prefWidth="165.0" />
-      <Label layoutX="289.0" layoutY="106.0" text="Postleitzahl:" />
-      <TextField layoutX="383.0" layoutY="101.0" prefHeight="25.0" prefWidth="60.0" />
+      <Label layoutX="8.0" layoutY="54.0" text="Straße" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="54.0" />
+      <Label layoutX="8.0" layoutY="18.0" text="Name" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="18.0" />
+      <Label layoutX="8.0" layoutY="88.0" text="PLZ" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="88.0" />
+      <Label layoutX="8.0" layoutY="123.0" text="Ort" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="123.0" />
+      <TextField layoutX="64.0" layoutY="14.0" prefHeight="25.0" prefWidth="524.0" AnchorPane.leftAnchor="64.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="14.0" />
+      <TextField layoutX="64.0" layoutY="50.0" prefHeight="25.0" prefWidth="524.0" AnchorPane.leftAnchor="64.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="50.0" />
+      <TextField layoutX="64.0" layoutY="84.0" prefHeight="25.0" prefWidth="524.0" AnchorPane.leftAnchor="64.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="84.0" />
+      <TextField layoutX="64.0" layoutY="119.0" prefHeight="25.0" prefWidth="524.0" AnchorPane.leftAnchor="64.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="119.0" />
+      <Button layoutX="519.0" layoutY="367.0" mnemonicParsing="false" text="Speichern" AnchorPane.bottomAnchor="8.0" AnchorPane.rightAnchor="12.0" />
+      <Button layoutX="433.0" layoutY="367.0" mnemonicParsing="false" text="Abbrechen" AnchorPane.bottomAnchor="8.0" AnchorPane.rightAnchor="93.0" />
    </children>
 </AnchorPane>
