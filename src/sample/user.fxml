@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="245.0" prefWidth="646.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.UserController">
+   <children>
+      <Label layoutX="187.0" layoutY="54.0" text="Straße" AnchorPane.leftAnchor="187.0" AnchorPane.topAnchor="54.0" />
+      <Label layoutX="187.0" layoutY="18.0" text="Name" AnchorPane.leftAnchor="187.0" AnchorPane.topAnchor="18.0" />
+      <Label layoutX="187.0" layoutY="124.0" text="PLZ" AnchorPane.leftAnchor="187.0" AnchorPane.topAnchor="124.0" />
+      <Label layoutX="187.0" layoutY="159.0" text="Ort" AnchorPane.leftAnchor="187.0" AnchorPane.topAnchor="159.0" />
+      <TextField fx:id="nameTextField" layoutX="239.0" layoutY="14.0" prefHeight="31.0" prefWidth="395.0" AnchorPane.leftAnchor="239.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="14.0" />
+      <TextField fx:id="strasseTextField" layoutX="239.0" layoutY="50.0" prefHeight="31.0" prefWidth="395.0" AnchorPane.leftAnchor="239.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="50.0" />
+      <TextField fx:id="hausnrTextField" layoutX="239.0" layoutY="84.0" prefHeight="31.0" prefWidth="395.0" AnchorPane.leftAnchor="239.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="84.0" />
+      <TextField fx:id="plzTextField" layoutX="239.0" layoutY="119.0" prefHeight="31.0" prefWidth="395.0" AnchorPane.leftAnchor="239.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="119.0" />
+      <Button layoutX="519.0" layoutY="367.0" mnemonicParsing="false" onAction="#saveClicked" text="Speichern" AnchorPane.bottomAnchor="8.0" AnchorPane.rightAnchor="12.0" />
+      <Button layoutX="415.0" layoutY="178.0" mnemonicParsing="false" onAction="#cancelClicked" text="Abbrechen" AnchorPane.bottomAnchor="8.0" AnchorPane.rightAnchor="104.0" />
+      <ListView fx:id="userListView" layoutX="2.0" onMouseClicked="#itemSelected" prefHeight="203.0" prefWidth="179.0" AnchorPane.bottomAnchor="42.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Button layoutX="14.0" layoutY="206.0" mnemonicParsing="false" onAction="#newClicked" prefHeight="31.0" prefWidth="72.0" text="New" />
+      <Button layoutX="99.0" layoutY="206.0" mnemonicParsing="false" onAction="#deleteClicked" prefHeight="31.0" prefWidth="72.0" text="Delete" />
+      <TextField fx:id="ortTextField" layoutX="239.0" layoutY="153.0" prefHeight="31.0" prefWidth="395.0" AnchorPane.bottomAnchor="61.0" AnchorPane.leftAnchor="239.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="153.0" />
+      <Label layoutX="186.0" layoutY="89.0" text="HausNr." />
+   </children>
+</AnchorPane>

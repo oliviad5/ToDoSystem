@@ -55,4 +55,18 @@ public class Controller {
         }
 
     }
+
+    public void onUserClicked(ActionEvent actionEvent) {
+        try {
+            root = FXMLLoader.load(getClass().getResource("user.fxml"));
+
+            Stage s = new Stage();
+            s.setTitle("User");
+            s.setScene(new Scene(root));
+            s.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
 }
