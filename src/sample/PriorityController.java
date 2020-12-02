@@ -38,6 +38,7 @@ public class PriorityController {
                 PreparedStatement statement = Priority.getConn().getConnection().prepareStatement("UPDATE gr4_priority SET description = '"+selectedItem.getName()+"' WHERE priority_id = "+ selectedItem.getId());
                 statement.executeUpdate();
                 priorityListView.setItems(Priority.getList());
+                // Änderung
 
         }else{
             //insert new
