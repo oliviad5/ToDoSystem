@@ -91,6 +91,7 @@ public class User {
 
     public static void updateList(User u) {
         try {
+            System.out.println("update List");
             PreparedStatement statement = getConn().getConnection().prepareStatement("UPDATE gr4_bearbeiter SET name = '" + u.getName() + "' WHERE bearbeiter_id = " + u.getId());
             statement.executeUpdate();
             statement = getConn().getConnection().prepareStatement("UPDATE gr4_bearbeiter SET strasse = '" + u.getStrasse() + "' WHERE bearbeiter_id = " + u.getId());

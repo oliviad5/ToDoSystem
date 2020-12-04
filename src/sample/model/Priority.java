@@ -23,6 +23,10 @@ public class Priority {
 
     private static AbstractDatabase conn = null;
 
+    public Priority(){
+
+    }
+
     public Priority(int id, String name) {
         this.id = id;
         this.name = name;

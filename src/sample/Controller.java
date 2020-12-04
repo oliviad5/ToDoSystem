@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import sample.model.Priority;
@@ -19,11 +20,13 @@ public class Controller {
     public ComboBox statusComboBox; //befüllen
     public ComboBox priorityComboBox; //befüllen
     public TextField todoTextField;
+
     public Pane contentPane;
+
     Parent root = null;
 
 
-    public void initialize(){
+    public void initialize() {
         todoListView.setItems(ToDo.getList());
         statusComboBox.setItems(Status.getList());
         priorityComboBox.setItems(Priority.getList());
@@ -68,5 +71,27 @@ public class Controller {
             e.printStackTrace();
         }
 
+    }
+
+    public void onToDoClicked(MouseEvent mouseEvent) {
+        ToDo selectedElement = todoListView.getSelectionModel().getSelectedItem();
+
+        if (selectedElement != null) {
+            /**
+             * Stelle die Daten des gewählten ToDos auf der rechten Seite dar
+             */
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("toDo.fxml"));
+                Parent root = loader.load();
+
+                ToDoController controller = (ToDoController) loader.getController();
+                controller.setToDo(selectedElement);
+                contentPane.getChildren().add(root);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
     }
 }

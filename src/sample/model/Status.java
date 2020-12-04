@@ -21,7 +21,9 @@ public class Status {
         return conn;
     }
 
+public Status(){
 
+}
 
     public Status(int id, String name) {
         this.id = id;
