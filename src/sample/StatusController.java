@@ -30,25 +30,22 @@ public class StatusController {
     }
 
     public void saveClicked(ActionEvent actionEvent) {
-        try {
-            if(selectedItem != null) {
-                //update existing item
-                selectedItem.setName(nameTextField.getText());
-                PreparedStatement statement = Status.getConn().getConnection().prepareStatement("UPDATE gr4_status SET description = '"+selectedItem.getName()+"' WHERE status_id = "+ selectedItem.getId());
-                statement.executeUpdate();
-                statusListView.setItems(Status.getList());
 
-            }else{
-                //insert new
-                PreparedStatement statement = Status.getConn().getConnection().prepareStatement("INSERT INTO gr4_status (description) VALUES ('"+nameTextField.getText()+"')");
-                statement.executeUpdate();
-                statusListView.setItems(Status.getList());
-            }
-            nameTextField.clear();
-            selectedItem = null;
-        } catch (SQLException e) {
-            e.printStackTrace();
+        if (selectedItem != null) {
+            //update existing item
+            selectedItem.setName(nameTextField.getText());
+            selectedItem.update();
+            statusListView.setItems(Status.getList());
+
+        } else {
+            //insert new
+            Status s = new Status(0, nameTextField.getText());
+            s.insert();
+            statusListView.setItems(Status.getList());
         }
+        nameTextField.clear();
+        selectedItem = null;
+
     }
 
     public void cancelClicked(ActionEvent actionEvent) {
@@ -63,17 +60,11 @@ public class StatusController {
     }
 
     public void deleteClicked(ActionEvent actionEvent) {
-        if(selectedItem != null) {
+        if (selectedItem != null) {
             //delete item
-            PreparedStatement statement = null;
-            try {
-                statement = Status.getConn().getConnection().prepareStatement("DELETE FROM gr4_status WHERE status_id = "+ selectedItem.getId());
-                statement.executeUpdate();
-                statusListView.setItems(Status.getList());
-                nameTextField.clear();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            selectedItem.delete();
+            statusListView.setItems(Status.getList());
+            nameTextField.clear();
         }
         selectedItem = null;
     }

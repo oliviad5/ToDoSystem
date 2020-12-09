@@ -46,6 +46,38 @@ public Status(){
         this.name = name;
     }
 
+    public void update(){
+        try {
+            PreparedStatement statement = Status.getConn().getConnection().prepareStatement("UPDATE gr4_status SET description = '"+name+"' WHERE status_id = "+ id);
+
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void insert(){
+
+        try {
+            PreparedStatement statement = Status.getConn().getConnection().prepareStatement("INSERT INTO gr4_status (description) VALUES ('"+name+"')");
+
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void delete(){
+        PreparedStatement statement = null;
+
+        try {
+            statement = Status.getConn().getConnection().prepareStatement("DELETE FROM gr4_status WHERE status_id = "+ id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public String toString() {
         return name;
