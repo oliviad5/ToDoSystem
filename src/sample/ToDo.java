@@ -3,6 +3,7 @@ package sample;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import sample.model.Priority;
+import sample.model.Status;
 import sample.model.db.AbstractDatabase;
 import sample.model.db.MySQLConnector;
 
@@ -61,6 +62,32 @@ public class ToDo {
     public int getPriority_id() { return priority_id; }
 
     public void setPriority_id(int priority_id) { this.priority_id = priority_id; }
+
+    public void delete(){
+        PreparedStatement statement = null;
+        try {
+            statement = ToDo.getConn().getConnection().prepareStatement("DELETE FROM gr4_ToDo WHERE toDo_id = "+ id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public void update(){
+        try {
+            PreparedStatement statement = Status.getConn().getConnection().prepareStatement("UPDATE gr4_ToDo SET name = '"+name+"' WHERE toDo_id = "+ id);
+            statement.executeUpdate();
+             statement = Status.getConn().getConnection().prepareStatement("UPDATE gr4_ToDo SET description = '"+description+"' WHERE toDo_id = "+ id);
+            statement.executeUpdate();
+             statement = Status.getConn().getConnection().prepareStatement("UPDATE gr4_ToDo SET status_id = '"+status_id+"' WHERE toDo_id = "+ id);
+            statement.executeUpdate();
+            statement = Status.getConn().getConnection().prepareStatement("UPDATE gr4_ToDo SET priority_id = '"+priority_id+"' WHERE toDo_id = "+ id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
 
     @Override
     public String toString() {

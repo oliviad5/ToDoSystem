@@ -56,6 +56,7 @@ public Status(){
         }
     }
 
+
     public void insert(){
 
         try {
@@ -69,7 +70,6 @@ public Status(){
 
     public void delete(){
         PreparedStatement statement = null;
-
         try {
             statement = Status.getConn().getConnection().prepareStatement("DELETE FROM gr4_status WHERE status_id = "+ id);
             statement.executeUpdate();
