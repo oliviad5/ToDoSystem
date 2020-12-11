@@ -31,26 +31,27 @@ public class PriorityController {
     }
 
     public void saveClicked(ActionEvent actionEvent) {
-        try {
+       // try {
         if(selectedItem != null) {
             //update existing item
             selectedItem.setName(nameTextField.getText());
-                PreparedStatement statement = Priority.getConn().getConnection().prepareStatement("UPDATE gr4_priority SET description = '"+selectedItem.getName()+"' WHERE priority_id = "+ selectedItem.getId());
-                statement.executeUpdate();
+            selectedItem.update();
+                //PreparedStatement statement = Priority.getConn().getConnection().prepareStatement("UPDATE gr4_priority SET description = '"+selectedItem.getName()+"' WHERE priority_id = "+ selectedItem.getId());
+                //statement.executeUpdate();
                 priorityListView.setItems(Priority.getList());
                 // Änderung
 
         }else{
             //insert new
-            PreparedStatement statement = Priority.getConn().getConnection().prepareStatement("INSERT INTO gr4_priority (description) VALUES ('"+nameTextField.getText()+"')");
-            statement.executeUpdate();
+            //PreparedStatement statement = Priority.getConn().getConnection().prepareStatement("INSERT INTO gr4_priority (description) VALUES ('"+nameTextField.getText()+"')");
+            //statement.executeUpdate();
+            Priority p = new Priority(0,nameTextField.getText());
+            p.insert();
             priorityListView.setItems(Priority.getList());
         }
         nameTextField.clear();
         selectedItem = null;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+
     }
 
     public void cancelClicked(ActionEvent actionEvent) {
@@ -62,15 +63,10 @@ public class PriorityController {
     public void deleteClicked(ActionEvent actionEvent) {
         if(selectedItem != null) {
             //delete item
-            PreparedStatement statement = null;
-            try {
-                statement = Priority.getConn().getConnection().prepareStatement("DELETE FROM gr4_priority WHERE priority_id = "+ selectedItem.getId());
-                statement.executeUpdate();
-                priorityListView.setItems(Priority.getList());
-                nameTextField.clear();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            selectedItem.delete();
+            priorityListView.setItems(Priority.getList());
+            nameTextField.clear();
+
             }
         selectedItem = null;
 

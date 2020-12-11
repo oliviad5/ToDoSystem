@@ -73,6 +73,8 @@ public class Controller {
 
     }
 
+
+
     public void onToDoClicked(MouseEvent mouseEvent) {
         ToDo selectedElement = todoListView.getSelectionModel().getSelectedItem();
 
@@ -91,7 +93,6 @@ public class Controller {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
         }
     }
 }

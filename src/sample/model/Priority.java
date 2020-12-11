@@ -48,6 +48,38 @@ public class Priority {
         this.name = name;
     }
 
+    public void update(){
+        try {
+            PreparedStatement statement = Priority.getConn().getConnection().prepareStatement("UPDATE gr4_priority SET description = '"+name+"' WHERE priority_id = "+ id);
+
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public void insert(){
+
+        try {
+            PreparedStatement statement = Priority.getConn().getConnection().prepareStatement("INSERT INTO gr4_priority (description) VALUES ('"+name+"')");
+
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void delete(){
+        PreparedStatement statement = null;
+        try {
+            statement = Priority.getConn().getConnection().prepareStatement("DELETE FROM gr4_priority WHERE priority_id = "+ id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public String toString() {
         return name;

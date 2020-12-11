@@ -75,11 +75,11 @@ public class UserController {
             selectedItem.setOrt(ortTextField.getText());
             selectedItem.setPlz(Integer.parseInt(plzTextField.getText()));
             selectedItem.setStrasse(strasseTextField.getText());
-            User.updateList(selectedItem);
+            selectedItem.update();
         } else {
 
             User u = new User(0, nameTextField.getText(), strasseTextField.getText(), Integer.parseInt(hausnrTextField.getText()), Integer.parseInt(plzTextField.getText()), ortTextField.getText());
-            User.addItem(u);
+            u.insert();
         }
         userListView.setItems(User.getList());
         clearTextField();
@@ -121,7 +121,7 @@ public class UserController {
     public void deleteClicked(ActionEvent actionEvent) {
         if (selectedItem != null) {
             //delete item
-            User.deleteItemFromList(selectedItem);
+            selectedItem.delete();
             userListView.setItems(User.getList());
             clearTextField();
         }

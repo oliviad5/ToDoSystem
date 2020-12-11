@@ -89,39 +89,39 @@ public class User {
         return name;
     }
 
-    public static void updateList(User u) {
+    public  void update() {
         try {
             System.out.println("update List");
-            PreparedStatement statement = getConn().getConnection().prepareStatement("UPDATE gr4_bearbeiter SET name = '" + u.getName() + "' WHERE bearbeiter_id = " + u.getId());
+            PreparedStatement statement = getConn().getConnection().prepareStatement("UPDATE gr4_bearbeiter SET name = '" + getName() + "' WHERE bearbeiter_id = " + getId());
             statement.executeUpdate();
-            statement = getConn().getConnection().prepareStatement("UPDATE gr4_bearbeiter SET strasse = '" + u.getStrasse() + "' WHERE bearbeiter_id = " + u.getId());
+            statement = getConn().getConnection().prepareStatement("UPDATE gr4_bearbeiter SET strasse = '" + getStrasse() + "' WHERE bearbeiter_id = " + getId());
             statement.executeUpdate();
-            statement = getConn().getConnection().prepareStatement("UPDATE gr4_bearbeiter SET hausnummer = '" + u.getHausnr() + "' WHERE bearbeiter_id = " + u.getId());
+            statement = getConn().getConnection().prepareStatement("UPDATE gr4_bearbeiter SET hausnummer = '" + getHausnr() + "' WHERE bearbeiter_id = " + getId());
             statement.executeUpdate();
-            statement = getConn().getConnection().prepareStatement("UPDATE gr4_bearbeiter SET plz = '" + u.getPlz() + "' WHERE bearbeiter_id = " + u.getId());
+            statement = getConn().getConnection().prepareStatement("UPDATE gr4_bearbeiter SET plz = '" + getPlz() + "' WHERE bearbeiter_id = " + getId());
             statement.executeUpdate();
-            statement = getConn().getConnection().prepareStatement("UPDATE gr4_bearbeiter SET ort = '" + u.getOrt() + "' WHERE bearbeiter_id = " + u.getId());
+            statement = getConn().getConnection().prepareStatement("UPDATE gr4_bearbeiter SET ort = '" + getOrt() + "' WHERE bearbeiter_id = " + getId());
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public static void addItem(User u) {
+    public void insert() {
 
         try {
-             PreparedStatement statement = User.getConn().getConnection().prepareStatement("INSERT INTO gr4_bearbeiter (bearbeiter_id, name,strasse,hausnummer,plz,ort) " +
-                     "VALUES (null,'"+ u.getName() +"','"+ u.getStrasse() +"','"+ u.getHausnr() +"','"+ u.getPlz() +"','"+ u.getOrt()+"')");
+             PreparedStatement statement = User.getConn().getConnection().prepareStatement("INSERT INTO gr4_bearbeiter (name,strasse,hausnummer,plz,ort) " +
+                     "VALUES ('"+ getName() +"','"+ getStrasse() +"','"+ getHausnr() +"','"+ getPlz() +"','"+ getOrt()+"')");
                 statement.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-    public static void deleteItemFromList(User u){
+    public void delete(){
         PreparedStatement statement = null;
         try {
-            statement = getConn().getConnection().prepareStatement("DELETE FROM gr4_bearbeiter WHERE bearbeiter_id = "+ u.getId());
+            statement = getConn().getConnection().prepareStatement("DELETE FROM gr4_bearbeiter WHERE bearbeiter_id = "+ getId());
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

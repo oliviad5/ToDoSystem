@@ -85,6 +85,16 @@ public class ToDo {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+    public void insert(){
+        try {
+            PreparedStatement statement = ToDo.getConn().getConnection().prepareStatement("INSERT INTO gr4_ToDo (toDo_id,name, description,status_id,priority_id) " +
+                    "VALUES (null,'"+ name +"','"+ description +"','"+ status_id +"','"+ priority_id +"')");
+
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 

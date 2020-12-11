@@ -60,19 +60,16 @@ public class ToDoController {
             //update existing item
             selected.setName(nameTextField.getText());
             selected.setDescription(descriptionTextArea.getText());
-
             selected.setPriority_id(priorityComboBox.getSelectionModel().getSelectedItem().getId());
             selected.setStatus_id(statusComboBox.getSelectionModel().getSelectedItem().getId());
             selected.update();
 
         } else {
             //insert new
-            Status s = new Status(0, nameTextField.getText());
-            s.insert();
-
+            ToDo t = new ToDo(0,nameTextField.getText(),descriptionTextArea.getText(),
+                    statusComboBox.getSelectionModel().getSelectedItem().getId(),priorityComboBox.getSelectionModel().getSelectedItem().getId());
+            t.insert();
         }
-
-
     }
 
     public void newClicked(ActionEvent actionEvent) {
