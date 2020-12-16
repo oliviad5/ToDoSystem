@@ -28,8 +28,13 @@ public class Controller {
 
     public void initialize() {
         todoListView.setItems(ToDo.getList());
+        Status s= new Status(-1,"Keine Auswahl");
+        Priority p = new Priority(-1,"Keine Auswahl");
         statusComboBox.setItems(Status.getList());
+        statusComboBox.getItems().add(s);
         priorityComboBox.setItems(Priority.getList());
+        priorityComboBox.getItems().add(p);
+        
     }
 
     public void onStatusClicked(ActionEvent actionEvent) {
