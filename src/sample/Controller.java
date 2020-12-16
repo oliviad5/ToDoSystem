@@ -75,6 +75,7 @@ public class Controller {
 
 
 
+
     public void onToDoClicked(MouseEvent mouseEvent) {
         ToDo selectedElement = todoListView.getSelectionModel().getSelectedItem();
 
@@ -88,6 +89,7 @@ public class Controller {
 
                 ToDoController controller = (ToDoController) loader.getController();
                 controller.setToDo(selectedElement);
+                controller.setToDoList(todoListView.getItems());
                 contentPane.getChildren().add(root);
 
             } catch (Exception e) {

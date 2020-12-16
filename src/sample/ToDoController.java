@@ -1,5 +1,7 @@
 package sample;
 
+import javafx.beans.Observable;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -16,6 +18,7 @@ public class ToDoController {
     public ComboBox<Status> statusComboBox;
     public ComboBox<Priority> priorityComboBox;
     private ToDo selected = null;
+    private ObservableList<ToDo> todoList;
 
     public void setToDo(ToDo item) {
         selected = item;
@@ -50,6 +53,10 @@ public class ToDoController {
 
     }
 
+    public void setToDoList(ObservableList<ToDo> list) {
+        this.todoList = list;
+    }
+
 
     public void deleteClicked(ActionEvent actionEvent) {
         selected.delete();
@@ -66,9 +73,10 @@ public class ToDoController {
 
         } else {
             //insert new
-            ToDo t = new ToDo(0,nameTextField.getText(),descriptionTextArea.getText(),
-                    statusComboBox.getSelectionModel().getSelectedItem().getId(),priorityComboBox.getSelectionModel().getSelectedItem().getId());
+            ToDo t = new ToDo(0, nameTextField.getText(), descriptionTextArea.getText(),
+                    statusComboBox.getSelectionModel().getSelectedItem().getId(), priorityComboBox.getSelectionModel().getSelectedItem().getId());
             t.insert();
+            todoList.add(t);
         }
     }
 
