@@ -1,5 +1,7 @@
 package sample;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,11 +16,12 @@ import sample.model.Priority;
 import sample.model.Status;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Controller {
     public ListView<ToDo> todoListView; //befüllen
-    public ComboBox statusComboBox; //befüllen
-    public ComboBox priorityComboBox; //befüllen
+    public ComboBox<Status> statusComboBox; //befüllen
+    public ComboBox<Priority> priorityComboBox; //befüllen
     public TextField todoTextField;
 
     public Pane contentPane;
@@ -28,13 +31,14 @@ public class Controller {
 
     public void initialize() {
         todoListView.setItems(ToDo.getList());
-        Status s= new Status(-1,"Keine Auswahl");
-        Priority p = new Priority(-1,"Keine Auswahl");
+        Status s = new Status(-1, "Keine Filterauswahl");
+        Priority p = new Priority(-1, "Keine Filterauswahl");
         statusComboBox.setItems(Status.getList());
         statusComboBox.getItems().add(s);
+        statusComboBox.getSelectionModel().select(s);
         priorityComboBox.setItems(Priority.getList());
         priorityComboBox.getItems().add(p);
-        
+        priorityComboBox.getSelectionModel().select(p);
     }
 
     public void onStatusClicked(ActionEvent actionEvent) {
@@ -79,8 +83,6 @@ public class Controller {
     }
 
 
-
-
     public void onToDoClicked(MouseEvent mouseEvent) {
         ToDo selectedElement = todoListView.getSelectionModel().getSelectedItem();
 
@@ -101,5 +103,17 @@ public class Controller {
                 e.printStackTrace();
             }
         }
+    }
+
+    public void statusComboBoxChanged(ActionEvent actionEvent) {
+        ObservableList<ToDo> filteredList;
+        filteredList = ToDo.getFilteredList(statusComboBox.getSelectionModel().getSelectedItem().getId(), priorityComboBox.getSelectionModel().getSelectedItem().getId());
+
+        todoListView.setItems(filteredList);
+    }
+
+    public void priorityComboBoxChanged(ActionEvent actionEvent) {
+        ObservableList<ToDo> filteredList = ToDo.getFilteredList(statusComboBox.getSelectionModel().getSelectedItem().getId(), priorityComboBox.getSelectionModel().getSelectedItem().getId());
+        todoListView.setItems(filteredList);
     }
 }

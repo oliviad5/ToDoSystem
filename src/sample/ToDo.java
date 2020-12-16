@@ -19,8 +19,8 @@ public class ToDo {
     int priority_id;
 
     public static AbstractDatabase getConn() {
-        if (conn == null){
-            conn = new MySQLConnector("d0345762", "5AHEL2021","rathgeb.at",3306,"d0345762");
+        if (conn == null) {
+            conn = new MySQLConnector("d0345762", "5AHEL2021", "rathgeb.at", 3306, "d0345762");
         }
         return conn;
     }
@@ -51,45 +51,59 @@ public class ToDo {
         this.name = name;
     }
 
-    public String getDescription() { return description; }
+    public String getDescription() {
+        return description;
+    }
 
-    public void setDescription(String description) { this.description = description; }
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-    public int getStatus_id() { return status_id; }
+    public int getStatus_id() {
+        return status_id;
+    }
 
-    public void setStatus_id(int status_id) { this.status_id = status_id; }
+    public void setStatus_id(int status_id) {
+        this.status_id = status_id;
+    }
 
-    public int getPriority_id() { return priority_id; }
+    public int getPriority_id() {
+        return priority_id;
+    }
 
-    public void setPriority_id(int priority_id) { this.priority_id = priority_id; }
+    public void setPriority_id(int priority_id) {
+        this.priority_id = priority_id;
+    }
 
-    public void delete(){
+    public void delete() {
         PreparedStatement statement = null;
         try {
-            statement = ToDo.getConn().getConnection().prepareStatement("DELETE FROM gr4_ToDo WHERE toDo_id = "+ id);
+            statement = ToDo.getConn().getConnection().prepareStatement("DELETE FROM gr4_ToDo WHERE toDo_id = " + id);
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-    public void update(){
+
+    public void update() {
         try {
-            PreparedStatement statement = Status.getConn().getConnection().prepareStatement("UPDATE gr4_ToDo SET name = '"+name+"' WHERE toDo_id = "+ id);
+            PreparedStatement statement = Status.getConn().getConnection().prepareStatement("UPDATE gr4_ToDo SET name = '" + name + "' WHERE toDo_id = " + id);
             statement.executeUpdate();
-             statement = Status.getConn().getConnection().prepareStatement("UPDATE gr4_ToDo SET description = '"+description+"' WHERE toDo_id = "+ id);
+            statement = Status.getConn().getConnection().prepareStatement("UPDATE gr4_ToDo SET description = '" + description + "' WHERE toDo_id = " + id);
             statement.executeUpdate();
-             statement = Status.getConn().getConnection().prepareStatement("UPDATE gr4_ToDo SET status_id = '"+status_id+"' WHERE toDo_id = "+ id);
+            statement = Status.getConn().getConnection().prepareStatement("UPDATE gr4_ToDo SET status_id = '" + status_id + "' WHERE toDo_id = " + id);
             statement.executeUpdate();
-            statement = Status.getConn().getConnection().prepareStatement("UPDATE gr4_ToDo SET priority_id = '"+priority_id+"' WHERE toDo_id = "+ id);
+            statement = Status.getConn().getConnection().prepareStatement("UPDATE gr4_ToDo SET priority_id = '" + priority_id + "' WHERE toDo_id = " + id);
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-    public void insert(){
+
+    public void insert() {
         try {
             PreparedStatement statement = ToDo.getConn().getConnection().prepareStatement("INSERT INTO gr4_ToDo (toDo_id,name, description,status_id,priority_id) " +
-                    "VALUES (null,'"+ name +"','"+ description +"','"+ status_id +"','"+ priority_id +"')");
+                    "VALUES (null,'" + name + "','" + description + "','" + status_id + "','" + priority_id + "')");
 
             statement.executeUpdate();
         } catch (SQLException e) {
@@ -98,13 +112,48 @@ public class ToDo {
 
     }
 
+    public static ObservableList<ToDo> getFilteredList(int statusId, int priorityId) {
+        ObservableList<ToDo> filteredList = FXCollections.observableArrayList();
+
+        if (statusId == -1 && priorityId == -1) {
+            filteredList = sqlFilteredList("SELECT * FROM gr4_ToDo");
+        } else if (priorityId == -1) {
+            filteredList = sqlFilteredList("SELECT * FROM gr4_ToDo WHERE status_id =" + statusId);
+        } else if (statusId == -1) {
+            filteredList = sqlFilteredList("SELECT * FROM gr4_ToDo WHERE priority_id =" + priorityId);
+        } else {
+            filteredList = sqlFilteredList("SELECT * FROM gr4_ToDo WHERE status_id = " + statusId+" AND priority_id = "+priorityId);
+        }
+        return filteredList;
+    }
+
+    private static ObservableList<ToDo> sqlFilteredList(String s) {
+        ObservableList<ToDo> list = FXCollections.observableArrayList();
+
+        PreparedStatement statement = null;
+        try {
+            statement = getConn().getConnection().prepareStatement(s);
+            ResultSet results = statement.executeQuery();
+
+            while (results.next()) {
+                ToDo temp = new ToDo(results.getInt("toDo_id"), results.getString("name"), results.getString("description"), results.getInt("status_id"), results.getInt("priority_id"));
+
+                list.add(temp);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return list;
+
+    }
 
     @Override
     public String toString() {
         return name;
     }
 
-    public static ObservableList<ToDo> getList(){
+    public static ObservableList<ToDo> getList() {
         ObservableList<ToDo> list = FXCollections.observableArrayList();
 
         // conn = new MySQLConnector("d0345762", "5AHEL2021","rathgeb.at",3306,"d0345762");
@@ -115,8 +164,8 @@ public class ToDo {
 
             ResultSet results = statement.executeQuery();
 
-            while (results.next()){
-                ToDo temp = new ToDo(results.getInt("toDo_id"),results.getString("name"),results.getString("description"),results.getInt("status_id"),results.getInt("priority_id"));
+            while (results.next()) {
+                ToDo temp = new ToDo(results.getInt("toDo_id"), results.getString("name"), results.getString("description"), results.getInt("status_id"), results.getInt("priority_id"));
 
                 list.add(temp);
             }
