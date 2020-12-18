@@ -3,10 +3,7 @@ package sample;
 import javafx.beans.Observable;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import sample.model.Priority;
@@ -18,7 +15,7 @@ public class ToDoController {
     public ComboBox<Status> statusComboBox;
     public ComboBox<Priority> priorityComboBox;
     private ToDo selected = null;
-    private ObservableList<ToDo> todoList;
+    private ListView<ToDo> todoList;
 
     public void setToDo(ToDo item) {
         selected = item;
@@ -53,13 +50,14 @@ public class ToDoController {
 
     }
 
-    public void setToDoList(ObservableList<ToDo> list) {
+    public void setToDoList(ListView<ToDo> list) {
         this.todoList = list;
     }
 
 
     public void deleteClicked(ActionEvent actionEvent) {
         selected.delete();
+        todoList.refresh();
     }
 
     public void saveClicked(ActionEvent actionEvent) {
@@ -76,8 +74,10 @@ public class ToDoController {
             ToDo t = new ToDo(0, nameTextField.getText(), descriptionTextArea.getText(),
                     statusComboBox.getSelectionModel().getSelectedItem().getId(), priorityComboBox.getSelectionModel().getSelectedItem().getId());
             t.insert();
-            todoList.add(t);
+            todoList.getItems().add(t);
         }
+
+        todoList.refresh();
     }
 
     public void newClicked(ActionEvent actionEvent) {
@@ -86,6 +86,6 @@ public class ToDoController {
         descriptionTextArea.clear();
         priorityComboBox.getSelectionModel().clearSelection();
         statusComboBox.getSelectionModel().clearSelection();
-
+        todoList.refresh();
     }
 }

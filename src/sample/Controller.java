@@ -96,7 +96,7 @@ public class Controller {
 
                 ToDoController controller = (ToDoController) loader.getController();
                 controller.setToDo(selectedElement);
-                controller.setToDoList(todoListView.getItems());
+                controller.setToDoList(todoListView);
                 contentPane.getChildren().add(root);
 
             } catch (Exception e) {
