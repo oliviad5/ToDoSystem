@@ -112,6 +112,16 @@ public class ToDo {
 
     }
 
+    public static ObservableList<ToDo> getFilteredPerNameList(String name) {
+        ObservableList<ToDo> filteredList = FXCollections.observableArrayList();
+
+        filteredList = sqlFilteredList("SELECT * FROM gr4_ToDo WHERE name LIKE '" + name + "%'");
+
+        return filteredList;
+
+    }
+
+
     public static ObservableList<ToDo> getFilteredList(int statusId, int priorityId) {
         ObservableList<ToDo> filteredList = FXCollections.observableArrayList();
 
@@ -122,7 +132,7 @@ public class ToDo {
         } else if (statusId == -1) {
             filteredList = sqlFilteredList("SELECT * FROM gr4_ToDo WHERE priority_id =" + priorityId);
         } else {
-            filteredList = sqlFilteredList("SELECT * FROM gr4_ToDo WHERE status_id = " + statusId+" AND priority_id = "+priorityId);
+            filteredList = sqlFilteredList("SELECT * FROM gr4_ToDo WHERE status_id = " + statusId + " AND priority_id = " + priorityId);
         }
         return filteredList;
     }

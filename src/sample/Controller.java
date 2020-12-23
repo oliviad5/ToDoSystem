@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -114,6 +115,14 @@ public class Controller {
 
     public void priorityComboBoxChanged(ActionEvent actionEvent) {
         ObservableList<ToDo> filteredList = ToDo.getFilteredList(statusComboBox.getSelectionModel().getSelectedItem().getId(), priorityComboBox.getSelectionModel().getSelectedItem().getId());
+        todoListView.setItems(filteredList);
+    }
+
+    public void filterName(KeyEvent keyEvent) {
+        /**
+         * select * from produkte where produktnummer like 'FF%'
+         */
+        ObservableList<ToDo> filteredList = ToDo.getFilteredPerNameList(todoTextField.getText());
         todoListView.setItems(filteredList);
     }
 }
